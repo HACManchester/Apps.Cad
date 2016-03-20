@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>Overview - Manchester HacSpace - CAD / CAM</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../css/highlight-fix.css" rel="stylesheet">
+        <link href="../css/highlight-custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">Manchester HacSpace - CAD / CAM</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PCM Milling <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li class="active">
+    <a href="./">Overview</a>
+</li>
+
+                    
+                        
+<li >
+    <a href="Building-PCB2GCode-Win/">Building PCB2GCode Windows</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="..">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="Building-PCB2GCode-Win/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#pcb-milling-software">PCB Milling Software</a></li>
+        
+            <li><a href="#flatcam">FlatCAM</a></li>
+        
+            <li><a href="#pcb2gcode">PCB2GCode</a></li>
+        
+            <li><a href="#rapid-pcb">Rapid-PCB</a></li>
+        
+            <li><a href="#pcb-gcode">PCB-GCode</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="pcb-milling-software">PCB Milling Software</h1>
+<p>In order to create PCB&rsquo;s using the CNC or laser cutter ideally we need ether a SVG Output (for the laser) or G-Code list of commands (for the CNC)
+There are several different applications available to do this.</p>
+<p>This is a list from the reprap site of different software for milling</p>
+<ul>
+<li><a href="http://reprap.org/wiki/PCB_Milling">http://reprap.org/wiki/PCB_Milling</a></li>
+</ul>
+<h2 id="flatcam">FlatCAM</h2>
+<p>FlatCAM is one of the best bits of software I&rsquo;ve seen and seems to be a recently updated one.
+It&rsquo;s written in Python, and has a nice GUI.</p>
+<ul>
+<li><a href="http://flatcam.org/">http://flatcam.org/</a></li>
+<li><a href="https://bitbucket.org/jpcgt/flatcam/">https://bitbucket.org/jpcgt/flatcam/</a></li>
+</ul>
+<p><a href="../../images/PCBMilling/FlatCAM-1.png"><img src="../../images/PCBMilling/FlatCAM-1.png" height="50%" width="50%" ></a> <br></p>
+<p>TODO can we add an SVG Export for the Laser, that would make this ideal.</p>
+<h2 id="pcb2gcode">PCB2GCode</h2>
+<p>This application is open source and seems to have had the most recent attention from a development point of view.
+It accepts gerber files and generates G-Code Files that can be used with a CNC</p>
+<ul>
+<li><a href="https://github.com/pcb2gcode/pcb2gcode">https://github.com/pcb2gcode/pcb2gcode</a></li>
+<li><a href="https://github.com/pcb2gcode/pcb2gcodeGUI">https://github.com/pcb2gcode/pcb2gcodeGUI</a></li>
+</ul>
+<p><a href="../../images/PCBMilling/pcb2gcodegui-1.png"><img src="../../images/PCBMilling/pcb2gcodegui-1.png" height="50%" width="50%" ></a> <br></p>
+<p>TODO I&rsquo;d really like to get the SVG output option working for the Laser Cutter</p>
+<h2 id="rapid-pcb">Rapid-PCB</h2>
+<p>This tool seems to be online only but can be used to generate G-Code from gerber files</p>
+<ul>
+<li><a href="http://rapid-pcb.com/">http://rapid-pcb.com/</a></li>
+</ul>
+<h2 id="pcb-gcode">PCB-GCode</h2>
+<p>PCB-GCode appears to be one of the older tools originaly developed for generating G-Code from Eagle Files.
+However it only appears to work with Eagle, not with Gerber files or KiCad. The last version released was 04/11/2014</p>
+<ul>
+<li><a href="http://pcbgcode.org/index.php">http://pcbgcode.org/index.php</a></li>
+</ul></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>Building PCB2GCode Windows - Manchester HacSpace - CAD / CAM</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/highlight-fix.css" rel="stylesheet">
+        <link href="../../css/highlight-custom.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Manchester HacSpace - CAD / CAM</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PCM Milling <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="../">Overview</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">Building PCB2GCode Windows</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#building-pcb2gcode">Building PCB2GCode</a></li>
+        
+            <li><a href="#setting-up-msys2">Setting up MSYS2</a></li>
+        
+            <li><a href="#compiling-sources">Compiling Sources</a></li>
+        
+            <li><a href="#installation">Installation</a></li>
+        
+            <li><a href="#pcb2gcodegui">PCB2GCodeGUI</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="building-pcb2gcode">Building PCB2GCode</h1>
+<h2 id="setting-up-msys2">Setting up MSYS2</h2>
+<p>In order to build PCB2GCode under windows we need to use MSYS2</p>
+<p>You can download the windows installer from one of the below links, for this doc I&rsquo;ll be using the x64 version under Windows 10</p>
+<ul>
+<li><a href="https://msys2.github.io/">https://msys2.github.io/</a></li>
+<li><a href="http://sourceforge.net/projects/msys2/">http://sourceforge.net/projects/msys2/</a></li>
+</ul>
+<p>After running the windows installer, open a MSYS2 prompt and run the following commands</p>
+<p><img alt="msys1" src="../../images/PCBMilling/MSYS2-1.png" /></p>
+<pre><code class="bash">pacman -Sy
+pacman --needed -S bash pacman pacman-mirrors msys2-runtime
+</code></pre>
+
+<ul>
+<li>Wait for the install to finish in the shell</li>
+<li>Close then re-open the MSYS2 shell</li>
+<li>Run the following and wait for the install to finish, these are depends needed for pcb2gcode</li>
+</ul>
+<pre><code class="bash">pacman -Su
+pacman --needed -S base-devel git mingw-w64-x86_64-gcc mingw-w64-x86_64-boost mingw-w64-x86_64-gtkmm mingw-w64-x86_64-imagemagick
+</code></pre>
+
+<h2 id="compiling-sources">Compiling Sources</h2>
+<h3 id="gerbv-setup">Gerbv Setup</h3>
+<p>The next step is to setup Gerbv, we need to use version 2.6.0, since it&rsquo;s reported that 2.6.1 has issues</p>
+<ul>
+<li>First <strong>close</strong> the <strong>MSYS2</strong> shell prompt</li>
+<li>Instead open a <strong>MinGW-w64 Win64 Shell</strong> instead</li>
+<li>This part is important as the paths are set slightly differently</li>
+</ul>
+<p><img alt="msys2" src="../../images/PCBMilling/MSYS2-2.png" /></p>
+<p>This next part will download / compile and install gerbv under MSYS2</p>
+<pre><code class="bash">wget downloads.sourceforge.net/gerbv/gerbv-2.6.0.tar.gz
+tar -xzf gerbv-2.6.0.tar.gz
+cd gerbv-2.6.0/    
+./configure --prefix=/mingw64 --disable-update-desktop-database
+make
+make install
+</code></pre>
+
+<h3 id="pcb2gcode-setup">PCB2GCode Setup</h3>
+<p>The next step is to build / compile PCB2GCode, this also needs to be done within a <strong>MinGW-w64 Win64 Shell</strong></p>
+<pre><code class="bash">cd ..
+git clone https://github.com/pcb2gcode/pcb2gcode.git
+cd pcb2gcode/
+autoreconf -i
+./configure --prefix=/mingw64
+make LDFLAGS='-s'
+</code></pre>
+
+<h2 id="installation">Installation</h2>
+<p>PCB2Gcode should now be located under C:\msys64\home\ric\pcb2gcode.libs <br>
+We also need some dll&rsquo;s, use the below script to copy everything needed into one directory</p>
+<p>In order to gather all the files together in one place for Windows we can use the below script
+to copy everything into one directory</p>
+<p><strong>pcb2gcode_pkg.sh</strong></p>
+<pre><code class="bash">#!/bin/bash
+
+mkdir -p pcb2gcode_build
+
+cp pcb2gcode/.libs/pcb2gcode.exe ./pcb2gcode_build/
+cp /mingw64/bin/libatk-1.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libboost_program_options-mt.dll ./pcb2gcode_build/
+cp /mingw64/bin/libbz2-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libcairo-2.dll ./pcb2gcode_build/
+cp /mingw64/bin/libcairomm-1.0-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libexpat-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libffi-6.dll ./pcb2gcode_build/
+cp /mingw64/bin/libfontconfig-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libfreetype-6.dll ./pcb2gcode_build/
+
+# For the i686 binary
+#cp /mingw64/bin/libgcc_s_dw2-1.dll  ./pcb2gcode_build/
+
+# For the x86_64 binary
+cp /mingw64/bin/libgcc_s_seh-1.dll  ./pcb2gcode_build/
+
+cp /mingw64/bin/libgdkmm-2.4-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgdk_pixbuf-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgdk-win32-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgerbv-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgio-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libglib-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libglibmm-2.4-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgmodule-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgobject-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libgtk-win32-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libharfbuzz-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libiconv-2.dll ./pcb2gcode_build/
+cp /mingw64/bin/libintl-8.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpango-1.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpangocairo-1.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpangoft2-1.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpangomm-1.4-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpangowin32-1.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpixman-1-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libpng16-16.dll ./pcb2gcode_build/
+cp /mingw64/bin/libsigc-2.0-0.dll ./pcb2gcode_build/
+cp /mingw64/bin/libstdc++-6.dll ./pcb2gcode_build/
+cp /mingw64/bin/libwinpthread-1.dll ./pcb2gcode_build/
+cp /mingw64/bin/zlib1.dll ./pcb2gcode_build/
+</code></pre>
+
+<h2 id="pcb2gcodegui">PCB2GCodeGUI</h2>
+<p>The GUI provides a nice front end to the CLI utility</p>
+<p>First download the source</p>
+<pre><code>git clone https://github.com/pcb2gcode/pcb2gcodeGUI.git
+</code></pre>
+
+<ul>
+<li>Next install QT Libraries for Windows, including QT Creator <br></li>
+<li>Use QT Creator to build the .pro file into a windows executable</li>
+<li>Place the generated exe into the same directory as PCB2GCode.exe</li>
+</ul>
+<p><img alt="pcb2gcodegui-1" src="../../images/PCBMilling/pcb2gcodegui-1.png" /></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

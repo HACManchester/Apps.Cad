@@ -1,0 +1,84 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Manchester HacSpace - CAD / CAM\n\n\nI\nve put together here a list of docs for CAD related applications.\nSuch as using FlatCAM to create PCB\ns", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#manchester-hacspace-cad-cam", 
+            "text": "I ve put together here a list of docs for CAD related applications.\nSuch as using FlatCAM to create PCB s", 
+            "title": "Manchester HacSpace - CAD / CAM"
+        }, 
+        {
+            "location": "/PCBMilling/", 
+            "text": "PCB Milling Software\n\n\nIn order to create PCB\ns using the CNC or laser cutter ideally we need ether a SVG Output (for the laser) or G-Code list of commands (for the CNC)\nThere are several different applications available to do this.\n\n\nThis is a list from the reprap site of different software for milling\n\n\n\n\nhttp://reprap.org/wiki/PCB_Milling\n\n\n\n\nFlatCAM\n\n\nFlatCAM is one of the best bits of software I\nve seen and seems to be a recently updated one.\nIt\ns written in Python, and has a nice GUI.\n\n\n\n\nhttp://flatcam.org/\n\n\nhttps://bitbucket.org/jpcgt/flatcam/\n\n\n\n\n \n\n\nTODO can we add an SVG Export for the Laser, that would make this ideal.\n\n\nPCB2GCode\n\n\nThis application is open source and seems to have had the most recent attention from a development point of view.\nIt accepts gerber files and generates G-Code Files that can be used with a CNC\n\n\n\n\nhttps://github.com/pcb2gcode/pcb2gcode\n\n\nhttps://github.com/pcb2gcode/pcb2gcodeGUI\n\n\n\n\n \n\n\nTODO I\nd really like to get the SVG output option working for the Laser Cutter\n\n\nRapid-PCB\n\n\nThis tool seems to be online only but can be used to generate G-Code from gerber files\n\n\n\n\nhttp://rapid-pcb.com/\n\n\n\n\nPCB-GCode\n\n\nPCB-GCode appears to be one of the older tools originaly developed for generating G-Code from Eagle Files.\nHowever it only appears to work with Eagle, not with Gerber files or KiCad. The last version released was 04/11/2014\n\n\n\n\nhttp://pcbgcode.org/index.php", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/PCBMilling/#pcb-milling-software", 
+            "text": "In order to create PCB s using the CNC or laser cutter ideally we need ether a SVG Output (for the laser) or G-Code list of commands (for the CNC)\nThere are several different applications available to do this.  This is a list from the reprap site of different software for milling   http://reprap.org/wiki/PCB_Milling", 
+            "title": "PCB Milling Software"
+        }, 
+        {
+            "location": "/PCBMilling/#flatcam", 
+            "text": "FlatCAM is one of the best bits of software I ve seen and seems to be a recently updated one.\nIt s written in Python, and has a nice GUI.   http://flatcam.org/  https://bitbucket.org/jpcgt/flatcam/      TODO can we add an SVG Export for the Laser, that would make this ideal.", 
+            "title": "FlatCAM"
+        }, 
+        {
+            "location": "/PCBMilling/#pcb2gcode", 
+            "text": "This application is open source and seems to have had the most recent attention from a development point of view.\nIt accepts gerber files and generates G-Code Files that can be used with a CNC   https://github.com/pcb2gcode/pcb2gcode  https://github.com/pcb2gcode/pcb2gcodeGUI      TODO I d really like to get the SVG output option working for the Laser Cutter", 
+            "title": "PCB2GCode"
+        }, 
+        {
+            "location": "/PCBMilling/#rapid-pcb", 
+            "text": "This tool seems to be online only but can be used to generate G-Code from gerber files   http://rapid-pcb.com/", 
+            "title": "Rapid-PCB"
+        }, 
+        {
+            "location": "/PCBMilling/#pcb-gcode", 
+            "text": "PCB-GCode appears to be one of the older tools originaly developed for generating G-Code from Eagle Files.\nHowever it only appears to work with Eagle, not with Gerber files or KiCad. The last version released was 04/11/2014   http://pcbgcode.org/index.php", 
+            "title": "PCB-GCode"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/", 
+            "text": "Building PCB2GCode\n\n\nSetting up MSYS2\n\n\nIn order to build PCB2GCode under windows we need to use MSYS2\n\n\nYou can download the windows installer from one of the below links, for this doc I\nll be using the x64 version under Windows 10\n\n\n\n\nhttps://msys2.github.io/\n\n\nhttp://sourceforge.net/projects/msys2/\n\n\n\n\nAfter running the windows installer, open a MSYS2 prompt and run the following commands\n\n\n\n\npacman -Sy\npacman --needed -S bash pacman pacman-mirrors msys2-runtime\n\n\n\n\n\n\nWait for the install to finish in the shell\n\n\nClose then re-open the MSYS2 shell\n\n\nRun the following and wait for the install to finish, these are depends needed for pcb2gcode\n\n\n\n\npacman -Su\npacman --needed -S base-devel git mingw-w64-x86_64-gcc mingw-w64-x86_64-boost mingw-w64-x86_64-gtkmm mingw-w64-x86_64-imagemagick\n\n\n\n\nCompiling Sources\n\n\nGerbv Setup\n\n\nThe next step is to setup Gerbv, we need to use version 2.6.0, since it\ns reported that 2.6.1 has issues\n\n\n\n\nFirst \nclose\n the \nMSYS2\n shell prompt\n\n\nInstead open a \nMinGW-w64 Win64 Shell\n instead\n\n\nThis part is important as the paths are set slightly differently\n\n\n\n\n\n\nThis next part will download / compile and install gerbv under MSYS2\n\n\nwget downloads.sourceforge.net/gerbv/gerbv-2.6.0.tar.gz\ntar -xzf gerbv-2.6.0.tar.gz\ncd gerbv-2.6.0/    \n./configure --prefix=/mingw64 --disable-update-desktop-database\nmake\nmake install\n\n\n\n\nPCB2GCode Setup\n\n\nThe next step is to build / compile PCB2GCode, this also needs to be done within a \nMinGW-w64 Win64 Shell\n\n\ncd ..\ngit clone https://github.com/pcb2gcode/pcb2gcode.git\ncd pcb2gcode/\nautoreconf -i\n./configure --prefix=/mingw64\nmake LDFLAGS='-s'\n\n\n\n\nInstallation\n\n\nPCB2Gcode should now be located under C:\\msys64\\home\\ric\\pcb2gcode.libs \n\nWe also need some dll\ns, use the below script to copy everything needed into one directory\n\n\nIn order to gather all the files together in one place for Windows we can use the below script\nto copy everything into one directory\n\n\npcb2gcode_pkg.sh\n\n\n#!/bin/bash\n\nmkdir -p pcb2gcode_build\n\ncp pcb2gcode/.libs/pcb2gcode.exe ./pcb2gcode_build/\ncp /mingw64/bin/libatk-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libboost_program_options-mt.dll ./pcb2gcode_build/\ncp /mingw64/bin/libbz2-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libcairo-2.dll ./pcb2gcode_build/\ncp /mingw64/bin/libcairomm-1.0-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libexpat-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libffi-6.dll ./pcb2gcode_build/\ncp /mingw64/bin/libfontconfig-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libfreetype-6.dll ./pcb2gcode_build/\n\n# For the i686 binary\n#cp /mingw64/bin/libgcc_s_dw2-1.dll  ./pcb2gcode_build/\n\n# For the x86_64 binary\ncp /mingw64/bin/libgcc_s_seh-1.dll  ./pcb2gcode_build/\n\ncp /mingw64/bin/libgdkmm-2.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgdk_pixbuf-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgdk-win32-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgerbv-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgio-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libglib-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libglibmm-2.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgmodule-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgobject-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgtk-win32-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libharfbuzz-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libiconv-2.dll ./pcb2gcode_build/\ncp /mingw64/bin/libintl-8.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpango-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangocairo-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangoft2-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangomm-1.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangowin32-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpixman-1-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpng16-16.dll ./pcb2gcode_build/\ncp /mingw64/bin/libsigc-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libstdc++-6.dll ./pcb2gcode_build/\ncp /mingw64/bin/libwinpthread-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/zlib1.dll ./pcb2gcode_build/\n\n\n\n\nPCB2GCodeGUI\n\n\nThe GUI provides a nice front end to the CLI utility\n\n\nFirst download the source\n\n\ngit clone https://github.com/pcb2gcode/pcb2gcodeGUI.git\n\n\n\n\n\n\nNext install QT Libraries for Windows, including QT Creator \n\n\nUse QT Creator to build the .pro file into a windows executable\n\n\nPlace the generated exe into the same directory as PCB2GCode.exe", 
+            "title": "Building PCB2GCode Windows"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#building-pcb2gcode", 
+            "text": "", 
+            "title": "Building PCB2GCode"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#setting-up-msys2", 
+            "text": "In order to build PCB2GCode under windows we need to use MSYS2  You can download the windows installer from one of the below links, for this doc I ll be using the x64 version under Windows 10   https://msys2.github.io/  http://sourceforge.net/projects/msys2/   After running the windows installer, open a MSYS2 prompt and run the following commands   pacman -Sy\npacman --needed -S bash pacman pacman-mirrors msys2-runtime   Wait for the install to finish in the shell  Close then re-open the MSYS2 shell  Run the following and wait for the install to finish, these are depends needed for pcb2gcode   pacman -Su\npacman --needed -S base-devel git mingw-w64-x86_64-gcc mingw-w64-x86_64-boost mingw-w64-x86_64-gtkmm mingw-w64-x86_64-imagemagick", 
+            "title": "Setting up MSYS2"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#compiling-sources", 
+            "text": "", 
+            "title": "Compiling Sources"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#gerbv-setup", 
+            "text": "The next step is to setup Gerbv, we need to use version 2.6.0, since it s reported that 2.6.1 has issues   First  close  the  MSYS2  shell prompt  Instead open a  MinGW-w64 Win64 Shell  instead  This part is important as the paths are set slightly differently    This next part will download / compile and install gerbv under MSYS2  wget downloads.sourceforge.net/gerbv/gerbv-2.6.0.tar.gz\ntar -xzf gerbv-2.6.0.tar.gz\ncd gerbv-2.6.0/    \n./configure --prefix=/mingw64 --disable-update-desktop-database\nmake\nmake install", 
+            "title": "Gerbv Setup"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#pcb2gcode-setup", 
+            "text": "The next step is to build / compile PCB2GCode, this also needs to be done within a  MinGW-w64 Win64 Shell  cd ..\ngit clone https://github.com/pcb2gcode/pcb2gcode.git\ncd pcb2gcode/\nautoreconf -i\n./configure --prefix=/mingw64\nmake LDFLAGS='-s'", 
+            "title": "PCB2GCode Setup"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#installation", 
+            "text": "PCB2Gcode should now be located under C:\\msys64\\home\\ric\\pcb2gcode.libs  \nWe also need some dll s, use the below script to copy everything needed into one directory  In order to gather all the files together in one place for Windows we can use the below script\nto copy everything into one directory  pcb2gcode_pkg.sh  #!/bin/bash\n\nmkdir -p pcb2gcode_build\n\ncp pcb2gcode/.libs/pcb2gcode.exe ./pcb2gcode_build/\ncp /mingw64/bin/libatk-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libboost_program_options-mt.dll ./pcb2gcode_build/\ncp /mingw64/bin/libbz2-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libcairo-2.dll ./pcb2gcode_build/\ncp /mingw64/bin/libcairomm-1.0-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libexpat-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libffi-6.dll ./pcb2gcode_build/\ncp /mingw64/bin/libfontconfig-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libfreetype-6.dll ./pcb2gcode_build/\n\n# For the i686 binary\n#cp /mingw64/bin/libgcc_s_dw2-1.dll  ./pcb2gcode_build/\n\n# For the x86_64 binary\ncp /mingw64/bin/libgcc_s_seh-1.dll  ./pcb2gcode_build/\n\ncp /mingw64/bin/libgdkmm-2.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgdk_pixbuf-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgdk-win32-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgerbv-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgio-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libglib-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libglibmm-2.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgmodule-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgobject-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libgtk-win32-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libharfbuzz-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libiconv-2.dll ./pcb2gcode_build/\ncp /mingw64/bin/libintl-8.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpango-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangocairo-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangoft2-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangomm-1.4-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpangowin32-1.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpixman-1-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libpng16-16.dll ./pcb2gcode_build/\ncp /mingw64/bin/libsigc-2.0-0.dll ./pcb2gcode_build/\ncp /mingw64/bin/libstdc++-6.dll ./pcb2gcode_build/\ncp /mingw64/bin/libwinpthread-1.dll ./pcb2gcode_build/\ncp /mingw64/bin/zlib1.dll ./pcb2gcode_build/", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/PCBMilling/Building-PCB2GCode-Win/#pcb2gcodegui", 
+            "text": "The GUI provides a nice front end to the CLI utility  First download the source  git clone https://github.com/pcb2gcode/pcb2gcodeGUI.git   Next install QT Libraries for Windows, including QT Creator   Use QT Creator to build the .pro file into a windows executable  Place the generated exe into the same directory as PCB2GCode.exe", 
+            "title": "PCB2GCodeGUI"
+        }
+    ]
+}
