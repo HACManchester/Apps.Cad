@@ -1,0 +1,18 @@
+site_name: Manchester HacSpace - PCB2GCode
+pages:
+- Home: index.md
+- PCB2GCode:
+    - Building PCB2GCode Windows: PCB2GCode/Building-Windows.md
+    - Building PCB2GCode-Gui Windows: PCB2GCode/Building-Gui-Windows.md
+
+theme: slate
+#theme: alabaster
+#theme: readthedocs
+#theme: mkdocs
+
+markdown_extensions:
+    - smarty
+
+extra_css:
+    - css/highlight-fix.css
+    - css/highlight-custom.css
