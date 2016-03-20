@@ -15,7 +15,7 @@ It's written in Python, and has a nice GUI.
   * <http://flatcam.org/>
   * <https://bitbucket.org/jpcgt/flatcam/>
 
-<a href="../../images/PCBMilling/FlatCAM-1.png"><img src="../../images/PCBMilling/FlatCAM-1.png" height="50%" width="50%" ></a> <br>
+<a href="../images/PCBMilling/FlatCAM-1.png"><img src="../../images/PCBMilling/FlatCAM-1.png" height="50%" width="50%" ></a> <br>
 
 TODO can we add an SVG Export for the Laser, that would make this ideal.
 
@@ -27,7 +27,7 @@ It accepts gerber files and generates G-Code Files that can be used with a CNC
   * <https://github.com/pcb2gcode/pcb2gcode>
   * <https://github.com/pcb2gcode/pcb2gcodeGUI>
 
-<a href="../../images/PCBMilling/pcb2gcodegui-1.png"><img src="../../images/PCBMilling/pcb2gcodegui-1.png" height="50%" width="50%" ></a> <br>
+<a href="../images/PCBMilling/pcb2gcodegui-1.png"><img src="../../images/PCBMilling/pcb2gcodegui-1.png" height="50%" width="50%" ></a> <br>
 
 TODO I'd really like to get the SVG output option working for the Laser Cutter
 
