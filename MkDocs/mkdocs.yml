@@ -1,9 +1,9 @@
-site_name: Manchester HacSpace - PCB2GCode
+site_name: Manchester HacSpace - CAD / CAM
 pages:
 - Home: index.md
-- PCB2GCode:
-    - Building PCB2GCode Windows: PCB2GCode/Building-Windows.md
-    - Building PCB2GCode-Gui Windows: PCB2GCode/Building-Gui-Windows.md
+- PCM Milling:
+    - Overview: PCBMilling/index.md
+    - Building PCB2GCode Windows: PCBMilling/Building-PCB2GCode-Win.md
 
 theme: slate
 #theme: alabaster
