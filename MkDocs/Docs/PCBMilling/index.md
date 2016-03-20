@@ -15,7 +15,7 @@ It's written in Python, and has a nice GUI.
   * <http://flatcam.org/>
   * <https://bitbucket.org/jpcgt/flatcam/>
 
-<a href="../images/PCBMilling/FlatCAM-1.png"><img src="../../images/PCBMilling/FlatCAM-1.png" height="50%" width="50%" ></a> <br>
+<a href="../images/PCBMilling/FlatCam-1.png"><img src="../../images/PCBMilling/FlatCam-1.png" height="50%" width="50%" ></a> <br>
 
 TODO can we add an SVG Export for the Laser, that would make this ideal.
 
