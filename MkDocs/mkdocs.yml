@@ -4,6 +4,7 @@ pages:
 - PCM Milling:
     - Overview: PCBMilling/index.md
     - Building PCB2GCode Windows: PCBMilling/Building-PCB2GCode-Win.md
+    - Building FlatCam Windows: PCBMilling/Building-FlatCam-Win.md
 
 theme: slate
 #theme: alabaster
