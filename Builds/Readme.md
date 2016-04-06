@@ -14,3 +14,11 @@ It looks like the pull request has been accepted now so this should be in the ma
   * https://bitbucket.org/jpcgt/flatcam
 
 In order to run, just run FlatCAM.py from within the build directory
+
+## FreeRouting
+
+This is an auto router for KiCad and other schematic apps
+
+Originally it was a online tool downloaded from <http://www.freerouting.net/> <br>
+It was then pulled down, and the source code was uploaded to <https://github.com/nikropht/FreeRouting> <br>
+The latest version, and prebuilt jar which this is from is a fork located here <https://github.com/Engidea/FreeRouting>
