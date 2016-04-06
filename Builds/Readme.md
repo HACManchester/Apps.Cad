@@ -21,4 +21,9 @@ This is an auto router for KiCad and other schematic apps
 
 Originally it was a online tool downloaded from <http://www.freerouting.net/> <br>
 It was then pulled down, and the source code was uploaded to <https://github.com/nikropht/FreeRouting> <br>
-The latest version, and prebuilt jar which this is from is a fork located here <https://github.com/Engidea/FreeRouting>
+
+The best version I've found with pre-built binaries is the following
+
+  * <https://github.com/freerouting/freerouting>
+
+I've uploaded a copy here for convenience
